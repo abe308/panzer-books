@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Finishing connection</title>
+<style>
+:root { --bg: #f7f5ef; --card: #ffffff; --ink: #1f2a20; --muted: #5b665c; --line: #e3ddcf; --accent: #1e7a46; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #141815; --card: #1c211d; --ink: #e8ece8; --muted: #a3ada4; --line: #2c332d; --accent: #4fc283; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 680px; margin: 48px auto; padding: 0 16px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; }
+h1 { font-size: 24px; margin: 0 0 4px; }
+h2 { font-size: 17px; margin: 24px 0 6px; }
+p, li { color: var(--ink); }
+.sub { color: var(--muted); margin: 0 0 20px; }
+a { color: var(--accent); }
+nav { margin-top: 20px; font-size: 14px; color: var(--muted); }
+nav a { margin-right: 14px; }
+.btn { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1>Finishing on your computer</h1>
+    <p>Intuit approved the connection. Handing it to the Panzer Books program on this computer now.</p>
+    <p><a class="btn" id="go" href="#">Finish on this computer</a></p>
+    <p class="sub">This page stores nothing. It only passes Intuit's one-time code to your own computer.</p>
+  </div>
+</main>
+<script>
+  // Intuit can only return to an https address, so this page forwards the one-time
+  // code to the listener running on the owner's own computer.
+  var target = "http://localhost:8765/callback" + window.location.search;
+  document.getElementById("go").href = target;
+  if (window.location.search.indexOf("code=") !== -1 || window.location.search.indexOf("error=") !== -1) {
+    window.location.replace(target);
+  }
+</script>
+</body>
+</html>
